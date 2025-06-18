@@ -1,0 +1,1093 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Remove horizontal scrolling prevention */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure all containers respect viewport width */
+* {
+  box-sizing: border-box;
+}
+
+/* Fix container widths */
+.max-w-7xl {
+  max-width: min(80rem, 100vw);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Custom scrollbar - Hidden by default, visible on hover */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+  transition: width 0.3s ease;
+}
+
+/* Show scrollbar on hover over the page */
+html:hover ::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #2563eb, #1e40af);
+}
+
+/* Light mode scrollbar */
+@media (prefers-color-scheme: light) {
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #2563eb, #1e40af);
+  }
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+
+html:hover {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 rgba(0, 0, 0, 0.1);
+}
+
+/* Remove all overflow-x-hidden from sections to prevent internal scrolling */
+section {
+  max-width: 100vw;
+  /* Remove overflow-x: hidden; */
+}
+
+/* Prevent navigation overflow */
+nav {
+  max-width: 100vw;
+  /* Remove overflow-x: hidden; */
+}
+
+/* Fix mobile menu */
+.mobile-nav {
+  max-width: 100%;
+}
+
+/* Prevent text overflow */
+.typing-animation {
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Fix card content overflow */
+.project-card,
+.experience-card,
+.education-card,
+.contact-card {
+  max-width: 100%;
+  /* Remove overflow: hidden; */
+}
+
+/* Ensure badges don't cause overflow */
+.skill-badge,
+.project-tag {
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Fix floating shapes positioning */
+.floating-shapes {
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.shape {
+  max-width: calc(100vw - 2rem);
+}
+
+/* Smooth Sliding Animations */
+.slide-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-right {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-down {
+  opacity: 0;
+  transform: translateY(-80px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active state for sections */
+.slide-in-active {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
+/* Child elements sliding animation */
+.slide-item {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-item.slide-in-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation delays for child elements */
+.slide-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.slide-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.slide-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.slide-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+.slide-item:nth-child(5) {
+  transition-delay: 0.5s;
+}
+.slide-item:nth-child(6) {
+  transition-delay: 0.6s;
+}
+.slide-item:nth-child(7) {
+  transition-delay: 0.7s;
+}
+.slide-item:nth-child(8) {
+  transition-delay: 0.8s;
+}
+.slide-item:nth-child(9) {
+  transition-delay: 0.9s;
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 25px 50px rgba(168, 85, 247, 0.25);
+}
+
+/* Existing animations */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-30px) rotate(4deg);
+  }
+  66% {
+    transform: translateY(-15px) rotate(-4deg);
+  }
+}
+
+@keyframes skill-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 85%;
+  }
+}
+
+.typing-animation {
+  overflow: hidden;
+  border-right: 3px solid rgba(59, 130, 246, 0.8);
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  animation-fill-mode: forwards;
+}
+
+/* Dark mode typing cursor */
+.dark .typing-animation {
+  border-right-color: rgba(59, 130, 246, 0.8);
+}
+
+@keyframes blink-caret-dark {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(59, 130, 246, 0.8);
+  }
+}
+
+/* Dark mode blink caret */
+.dark .typing-animation {
+  animation: typing 3s steps(40, end), blink-caret-dark 0.75s step-end infinite;
+}
+
+@keyframes blink-caret-dark {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(59, 130, 246, 0.8);
+  }
+}
+
+/* Hide cursor after typing completes */
+.typing-animation::after {
+  content: "";
+  animation: hide-cursor 0.1s 3.75s forwards;
+}
+
+@keyframes hide-cursor {
+  to {
+    border-right-color: transparent;
+  }
+}
+
+/* Alternative approach - hide border after animation */
+.typing-animation {
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end 5, hide-border 0.1s 3.75s forwards;
+}
+
+@keyframes hide-border {
+  to {
+    border-right: none;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(168, 85, 247, 0.8);
+  }
+}
+
+.slide-up-animation {
+  animation: slideUpKeyframe 0.8s ease-out 0.5s both;
+}
+
+.slide-up-animation-delay {
+  animation: slideUpKeyframe 0.8s ease-out 1s both;
+}
+
+.slide-up-animation-delay-2 {
+  animation: slideUpKeyframe 0.8s ease-out 1.5s both;
+}
+
+.slide-up-animation-delay-3 {
+  animation: slideUpKeyframe 0.8s ease-out 1.8s both;
+}
+
+@keyframes slideUpKeyframe {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  animation: float 12s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 120px;
+  height: 120px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 180px;
+  height: 180px;
+  top: 60%;
+  right: 10%;
+  animation-delay: 4s;
+}
+
+.shape-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 50%;
+  animation-delay: 8s;
+}
+
+.skill-bar {
+  animation: skill-fill 2.5s ease-out forwards;
+  animation-delay: 0.8s;
+  width: 0%;
+}
+
+/* Update skill bar colors for light mode */
+@media (prefers-color-scheme: light) {
+  .skill-bar {
+    background: linear-gradient(45deg, #3b82f6, #1d4ed8) !important;
+  }
+}
+
+/* Pulse effect for icons */
+@keyframes pulse-icon {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.animate-pulse {
+  animation: pulse-icon 3s ease-in-out infinite;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #2563eb, #1e40af);
+}
+
+/* Light mode scrollbar */
+@media (prefers-color-scheme: light) {
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #2563eb, #1e40af);
+  }
+}
+
+/* Theme transition */
+* {
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
+}
+
+/* Enhanced card animations */
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-animate {
+  animation: cardSlideIn 0.6s ease-out forwards;
+}
+
+/* Improved section transitions */
+.section-transition {
+  transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Fix for HOME section blinking near navigation */
+#home {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure navigation stays above content */
+nav {
+  z-index: 50;
+}
+
+/* Prevent content from interfering with navigation */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Smooth down arrow animation - moves from top to bottom */
+@keyframes smoothDown {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 0.7;
+  }
+}
+
+.animate-smooth-down {
+  animation: smoothDown 2s ease-in-out infinite;
+}
+
+/* ===== RESPONSIVE DESIGN IMPROVEMENTS ===== */
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  /* Hide desktop navigation on mobile */
+  .desktop-nav {
+    display: none;
+  }
+
+  /* Mobile navigation styles */
+  .mobile-nav {
+    display: flex;
+  }
+
+  /* Adjust navigation padding for mobile */
+  nav .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Tablet and up - show desktop nav */
+@media (min-width: 769px) {
+  .mobile-nav {
+    display: none;
+  }
+
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+/* Mobile Hero Section */
+@media (max-width: 640px) {
+  .typing-animation {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  /* Smaller profile image on mobile */
+  .profile-image-mobile {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Adjust hero text spacing */
+  .hero-content h1 {
+    margin-bottom: 1rem;
+  }
+
+  .hero-content .text-xl {
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+
+  /* Stack buttons vertically on small screens */
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-buttons button,
+  .hero-buttons a {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Mobile floating shapes - smaller and fewer */
+@media (max-width: 768px) {
+  .shape-1 {
+    width: 60px;
+    height: 60px;
+    top: 15%;
+    left: 5%;
+  }
+
+  .shape-2 {
+    width: 80px;
+    height: 80px;
+    top: 70%;
+    right: 5%;
+  }
+
+  .shape-3 {
+    display: none; /* Hide third shape on mobile */
+  }
+}
+
+/* Mobile section spacing */
+@media (max-width: 640px) {
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+/* Mobile card layouts */
+@media (max-width: 768px) {
+  /* Single column layout for cards */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Adjust card padding */
+  .mobile-card-padding {
+    padding: 1.5rem;
+  }
+}
+
+/* Mobile experience cards */
+@media (max-width: 640px) {
+  .experience-card {
+    padding: 1.5rem;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .experience-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .experience-metric {
+    padding: 0.75rem;
+  }
+
+  .experience-metric-value {
+    font-size: 1.25rem;
+  }
+}
+
+/* Mobile contact section */
+@media (max-width: 640px) {
+  .contact-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-card {
+    padding: 1.5rem;
+  }
+
+  .contact-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .contact-cta {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .contact-cta h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-cta p {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile education section */
+@media (max-width: 640px) {
+  .education-card {
+    padding: 1.5rem;
+  }
+
+  .education-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .education-title {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .coursework-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+/* Mobile about section */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .about-visual {
+    height: 250px;
+    order: -1; /* Move visual above text on mobile */
+  }
+}
+
+/* Mobile skills badges */
+@media (max-width: 640px) {
+  .skill-badge {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Mobile project cards */
+@media (max-width: 640px) {
+  .project-card {
+    padding: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 1.125rem;
+    line-height: 1.3;
+  }
+
+  .project-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .project-achievements {
+    font-size: 0.75rem;
+  }
+
+  .project-tags {
+    gap: 0.5rem;
+  }
+
+  .project-tag {
+    font-size: 0.625rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+/* Mobile animations - reduce motion on small screens */
+@media (max-width: 768px) {
+  .slide-left,
+  .slide-right {
+    transform: translateY(30px);
+  }
+
+  .slide-item {
+    transform: translateY(20px);
+  }
+
+  /* Faster animations on mobile */
+  .slide-left,
+  .slide-right,
+  .slide-up,
+  .slide-down {
+    transition-duration: 0.8s;
+  }
+
+  .slide-item {
+    transition-duration: 0.6s;
+  }
+}
+
+/* Mobile hover states - disable on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .hover-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .group:hover .group-hover\:scale-110 {
+    transform: none;
+  }
+
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+
+  .hover\:scale-110:hover {
+    transform: none;
+  }
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .nav-button {
+    padding: 0.75rem;
+  }
+
+  .social-link {
+    padding: 0.75rem;
+  }
+}
+
+/* Mobile typography improvements */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .text-lg {
+    font-size: 1.125rem;
+  }
+
+  .text-xl {
+    font-size: 1.25rem;
+  }
+}
+
+/* Mobile spacing utilities */
+@media (max-width: 640px) {
+  .mobile-px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mobile-py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .mobile-mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  .mobile-mt-6 {
+    margin-top: 1.5rem;
+  }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 896px) and (orientation: landscape) {
+  .hero-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .profile-image-mobile {
+    width: 100px;
+    height: 100px;
+  }
+
+  .typing-animation {
+    font-size: 1.875rem;
+  }
+
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Very small screens (iPhone SE, etc.) */
+@media (max-width: 375px) {
+  .typing-animation {
+    font-size: 1.75rem;
+  }
+
+  .hero-content .text-xl {
+    font-size: 1rem;
+  }
+
+  .hero-content p {
+    font-size: 0.875rem;
+  }
+
+  .contact-cta {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Large screens optimization */
+@media (min-width: 1536px) {
+  .max-w-7xl {
+    max-width: 1400px;
+  }
+
+  .hero-content h1 {
+    font-size: 5rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+  }
+}
+
+/* Fix grid layouts on small screens */
+@media (max-width: 640px) {
+  .grid {
+    gap: 1rem;
+  }
+
+  .projects-grid,
+  .skills-grid,
+  .contact-grid,
+  .about-stats,
+  .experience-metrics,
+  .contact-stats,
+  .coursework-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  /* Ensure proper spacing */
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+}
+
+/* Fix very small screens */
+@media (max-width: 375px) {
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-4xl,
+  .max-w-2xl {
+    max-width: calc(100vw - 2rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Reduce padding on very small screens */
+  .mobile-card-padding {
+    padding: 1rem;
+  }
+
+  /* Fix button widths */
+  .hero-buttons button,
+  .hero-buttons a {
+    max-width: calc(100vw - 2rem);
+  }
+}
+
+/* Landscape mobile fixes */
+@media (max-width: 896px) and (orientation: landscape) {
+  .floating-shapes {
+    display: none;
+  }
+
+  .hero-content {
+    max-width: 100vw;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
